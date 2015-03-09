@@ -15,4 +15,7 @@ Style the page wisely.
 Bonus Question
 Describe how you would or if time permits implement a feature to allow a user to save the location reference to local storage as a favourite for retrieving in the future when the page is loaded again.
 
+ - For implement bookmarks using local storage you can use this addon to the project http://w8r.github.io/Leaflet.Bookmarks/
+ or use html5 pushstate + html5 local storage
+
 
