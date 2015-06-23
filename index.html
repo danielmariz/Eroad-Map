@@ -9,7 +9,7 @@
     <meta name="author" content="Daniel Mariz | danielcsmariz@gmail.com">
     <!-- <link rel="icon" href="assets/favicon.ico"> -->
 
-    <title>Eroad Map Test</title>
+    <title>Leafletjs Map Test</title>
 
     <link href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel="stylesheet" />
     <style type="text/css">
@@ -48,11 +48,11 @@
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script type="text/javascript">
       
-      var EroadMap = {};
+      var LeafletjsMap = {};
 
-      EroadMap.initMap =  function(){
-        EroadMap.map = L.map('map',{zoomControl: false}).setView([38.82259, -2.8125], 3);
-        EroadMap.map.setMaxBounds([[84.67351256610522, -174.0234375], [-58.995311187950925, 223.2421875]]);
+      LeafletjsMap.initMap =  function(){
+        LeafletjsMap.map = L.map('map',{zoomControl: false}).setView([38.82259, -2.8125], 3);
+        LeafletjsMap.map.setMaxBounds([[84.67351256610522, -174.0234375], [-58.995311187950925, 223.2421875]]);
         L.tileLayer('https://{s}.tiles.mapbox.com/v4/{mapId}/{z}/{x}/{y}.png?access_token={token}', {
             maxZoom: 8,
             minZoom: 3,
@@ -61,22 +61,22 @@
             subdomains: ['a','b','c','d'],
             mapId: 'danielmariz.ldl0572f',
             token: 'pk.eyJ1IjoiZGFuaWVsbWFyaXoiLCJhIjoiMjgtaDJqRSJ9.mYH2dhvZv4a7DE30T6qyIw'
-        }).addTo(EroadMap.map);
+        }).addTo(LeafletjsMap.map);
 
-        EroadMap.map.invalidateSize(false);
-        EroadMap.popup = L.popup();
-        EroadMap.map.on('contextmenu', EroadMap.onMapClick);
+        LeafletjsMap.map.invalidateSize(false);
+        LeafletjsMap.popup = L.popup();
+        LeafletjsMap.map.on('contextmenu', LeafletjsMap.onMapClick);
       };
 
-      EroadMap.onMapClick = function(_event){
+      LeafletjsMap.onMapClick = function(_event){
         var endpoint = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + _event.latlng.lat + ',' + _event.latlng.lng + '&timestamp=' + Math.floor(Date.now() / 1000);
         $.get(endpoint, function(_data){
-          EroadMap.printData(_data, _event.latlng) ;
+          LeafletjsMap.printData(_data, _event.latlng) ;
         });
 
       };
 
-      EroadMap.printData =  function(_data, _latlng) {
+      LeafletjsMap.printData =  function(_data, _latlng) {
         
         var timezone = _data.timeZoneId;
         var date = new Date();         
@@ -91,13 +91,13 @@
           content = "<h3>Try to click on land</h3> <img width='100%' src='http://assets.diylol.com/hfs/bc8/7d9/5b6/resized/yes-i-whale-meme-generator-yes-i-whale-edeb8f.jpg'>"
         }
 
-        EroadMap.popup
+        LeafletjsMap.popup
           .setLatLng(_latlng)
           .setContent(content)
-          .openOn(EroadMap.map);
+          .openOn(LeafletjsMap.map);
       };
 
-      EroadMap.initMap();
+      LeafletjsMap.initMap();
 
     </script>
   </body>
