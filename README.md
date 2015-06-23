@@ -1,4 +1,4 @@
-# Map Test
+# Leafletjs Map Test
 
 Page with a world map. 
 
